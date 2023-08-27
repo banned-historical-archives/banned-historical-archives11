@@ -119,16 +119,22 @@ async function getDetails(link) {
   const dom = new JSDOM(r.data);
   const content = dom.window.document.querySelector(
     '#text-item-type-metadata-text .element-text',
+  ) || dom.window.document.querySelector(
+    '#trans-display',
   );
   const iframe = dom.window.document.querySelector('iframe');
   const img_container = dom.window.document.querySelector('#my-fotorama');
   const primary_script = dom.window.document.querySelector('#primary script');
   return {
     imgs: img_container
-      ? json5.parse(primary_script.textContent.slice(
-          primary_script.textContent.indexOf('['),
-          primary_script.textContent.indexOf(']') + 1,
-        )).map(i => i.img)
+      ? json5
+          .parse(
+            primary_script.textContent.slice(
+              primary_script.textContent.indexOf('['),
+              primary_script.textContent.indexOf(']') + 1,
+            ),
+          )
+          .map((i) => i.img)
       : [],
     pdf: iframe
       ? 'https://maoistlegacy.de' + iframe.src.split('file=')[1]
@@ -192,9 +198,10 @@ async function getDetails(link) {
                     ? 'subtitle'
                     : 'paragraph'
                   : 'paragraph',
-              text: i.textContent,
+              text: i.textContent.trim(),
             };
           })
+          .filter((i) => i.text)
       : [],
   };
 }
@@ -240,27 +247,27 @@ async function downloadFile(url, filePath) {
 
       if (await fs.existsSync(`./data/${id}/done`)) {
         console.log(`skip ${id}`);
-        continue;
+        // continue;
       }
       const details = await getDetails(j.link);
       await fs.ensureDir(`./data/${id}`);
       await fs.writeJSON(`./data/${id}/meta.json`, details);
-      if (details.imgs.length) {
-        let idx = 1;
-        for (const img of details.imgs) {
-          console.log('download img ' + idx)
-          await downloadFile(
-            'https://maoistlegacy.de' + img,
-            `./data/${id}/${idx}.${img.split('.').pop()}`,
-          );
-          ++idx;
-        }
-      }
+      // if (details.imgs.length) {
+      //   let idx = 1;
+      //   for (const img of details.imgs) {
+      //     console.log('download img ' + idx)
+      //     await downloadFile(
+      //       'https://maoistlegacy.de' + img,
+      //       `./data/${id}/${idx}.${img.split('.').pop()}`,
+      //     );
+      //     ++idx;
+      //   }
+      // }
 
-      if (details.pdf) {
-        console.log('download pdf ' + id);
-        await downloadFile(details.pdf, `./data/${id}/${id}.pdf`);
-      }
+      // if (details.pdf) {
+      //   console.log('download pdf ' + id);
+      //   await downloadFile(details.pdf, `./data/${id}/${id}.pdf`);
+      // }
       await fs.writeFile(`./data/${id}/done`, '1');
     }
     console.log('done')
