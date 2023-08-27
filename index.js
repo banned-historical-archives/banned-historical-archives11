@@ -125,6 +125,10 @@ async function getDetails(link) {
   const iframe = dom.window.document.querySelector('iframe');
   const img_container = dom.window.document.querySelector('#my-fotorama');
   const primary_script = dom.window.document.querySelector('#primary script');
+
+  const identifier = Array.from(
+      dom.window.document.querySelectorAll('#dublin-core-identifier .element-text'),
+    ).map((i) => i.textContent);
   return {
     imgs: img_container
       ? json5
@@ -147,6 +151,7 @@ async function getDetails(link) {
     subject: Array.from(
       dom.window.document.querySelectorAll('#dublin-core-subject a'),
     ).map((i) => i.textContent),
+    identifier: identifier.length ? identifier : undefined,
     coverage: Array.from(
       dom.window.document.querySelectorAll(
         '#dublin-core-coverage .element-text',
@@ -247,27 +252,27 @@ async function downloadFile(url, filePath) {
 
       if (await fs.existsSync(`./data/${id}/done`)) {
         console.log(`skip ${id}`);
-        // continue;
+        continue;
       }
       const details = await getDetails(j.link);
       await fs.ensureDir(`./data/${id}`);
       await fs.writeJSON(`./data/${id}/meta.json`, details);
-      // if (details.imgs.length) {
-      //   let idx = 1;
-      //   for (const img of details.imgs) {
-      //     console.log('download img ' + idx)
-      //     await downloadFile(
-      //       'https://maoistlegacy.de' + img,
-      //       `./data/${id}/${idx}.${img.split('.').pop()}`,
-      //     );
-      //     ++idx;
-      //   }
-      // }
+      if (details.imgs.length) {
+        let idx = 1;
+        for (const img of details.imgs) {
+          console.log('download img ' + idx)
+          await downloadFile(
+            'https://maoistlegacy.de' + img,
+            `./data/${id}/${idx}.${img.split('.').pop()}`,
+          );
+          ++idx;
+        }
+      }
 
-      // if (details.pdf) {
-      //   console.log('download pdf ' + id);
-      //   await downloadFile(details.pdf, `./data/${id}/${id}.pdf`);
-      // }
+      if (details.pdf) {
+        console.log('download pdf ' + id);
+        await downloadFile(details.pdf, `./data/${id}/${id}.pdf`);
+      }
       await fs.writeFile(`./data/${id}/done`, '1');
     }
     console.log('done')
