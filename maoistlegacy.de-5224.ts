@@ -29,7 +29,48 @@ export default {
       "https://raw.githubusercontent.com/banned-historical-archives/banned-historical-archives11/main/data/5224/19.jpg"
     ]
   },
-  "parser_option": {},
+  "parser_option": {
+    "articles": [
+      {
+        "page_start": 1,
+        "page_end": 19,
+        "title": "我们是怎样教育挽救失足女青年张爱云的",
+        "dates": [
+          {
+            "year": 1981,
+            "month": 10
+          }
+        ],
+        "origin": "中共济南市委政法小组办公室, 全市政法工作会议典型发言材料(1981.10.27——10.30), 44-62 (MLC, G1104)",
+        "is_range_date": false,
+        "tags": [
+          {
+            "name": "帮教",
+            "type": "主题/事件"
+          },
+          {
+            "name": "改造",
+            "type": "主题/事件"
+          },
+          {
+            "name": "济南",
+            "type": "主题/事件"
+          },
+          {
+            "name": "劳动教养",
+            "type": "主题/事件"
+          },
+          {
+            "name": "政法",
+            "type": "主题/事件"
+          }
+        ],
+        "authors": [
+          "褚胜莲"
+        ]
+      }
+    ]
+  },
   "parser_id": "automation",
   "version": 2,
   "path": "data/5224"

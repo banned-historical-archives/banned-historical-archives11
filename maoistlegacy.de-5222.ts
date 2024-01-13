@@ -29,7 +29,41 @@ export default {
       "https://raw.githubusercontent.com/banned-historical-archives/banned-historical-archives11/main/data/5222/19.jpg"
     ]
   },
-  "parser_option": {},
+  "parser_option": {
+    "articles": [
+      {
+        "page_start": 1,
+        "page_end": 19,
+        "title": "在全市政法工作会议上的发言",
+        "dates": [
+          {
+            "year": 1981,
+            "month": 10,
+            "day": 27
+          }
+        ],
+        "origin": "中共济南市委政法小组办公室, 全市政法工作会议典型发言材料(1981.10.27——10.30), 3-21 (MLC, G1104)",
+        "is_range_date": false,
+        "tags": [
+          {
+            "name": "四人帮",
+            "type": "主题/事件"
+          },
+          {
+            "name": "刑法",
+            "type": "主题/事件"
+          },
+          {
+            "name": "政法",
+            "type": "主题/事件"
+          }
+        ],
+        "authors": [
+          "李新民"
+        ]
+      }
+    ]
+  },
   "parser_id": "automation",
   "version": 2,
   "path": "data/5222"

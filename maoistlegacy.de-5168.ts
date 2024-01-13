@@ -62,7 +62,31 @@ export default {
       "https://raw.githubusercontent.com/banned-historical-archives/banned-historical-archives11/main/data/5168/52.jpg"
     ]
   },
-  "parser_option": {},
+  "parser_option": {
+    "articles": [
+      {
+        "page_start": 1,
+        "page_end": 52,
+        "title": "中华人民共和国宪法 红灯宣传片",
+        "dates": [],
+        "origin": "中华人民共和国宪法 红灯宣传片, 1-52",
+        "is_range_date": false,
+        "tags": [
+          {
+            "name": "红灯片",
+            "type": "主题/事件"
+          },
+          {
+            "name": "宪法",
+            "type": "主题/事件"
+          }
+        ],
+        "authors": [
+          "司法部宣传司"
+        ]
+      }
+    ]
+  },
   "parser_id": "automation",
   "version": 2,
   "path": "data/5168"
