@@ -1,0 +1,16 @@
+export default {
+  "resource_type": "book",
+  "entity": {
+    "id": "maoistlegacy.de-642",
+    "name": "中共中央组织部关于‘重庆新民主主义青年联谊社’等六个组织的成员参加革命工作时间问题给中共四川省委组织部的复函",
+    "author": "中共中央组织部",
+    "internal": false,
+    "official": false,
+    "type": "unknown",
+    "files": []
+  },
+  "parser_option": {},
+  "parser_id": "maoistlegacy-txt",
+  "version": 2,
+  "path": "data/642"
+}
