@@ -1,5 +1,5 @@
 export default {
-  "resource_type": "book",
+  "resource_type": "book", 
   "entity": { 
     "id": "maoistlegacy.de-1000",
     "name": "国务院人事局关于单独开业行医是否计算劳动年限（一般工龄）的复函",
